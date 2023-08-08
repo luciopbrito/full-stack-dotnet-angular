@@ -1,3 +1,6 @@
 {
-	"cSpell.words": ["Udemy"]
+	"cSpell.words": [
+		"Udemy"
+	],
+	"dotnet.defaultSolution": "backend/src/ProEventos.API/ProEventos.API.sln"
 }
