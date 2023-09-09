@@ -11,6 +11,7 @@ export class EventsComponent implements OnInit {
   widthImg: number = 150;
   marginImg: number = 2;
   showImage: boolean = false;
+  filter: string = '';
 
   constructor(private http: HttpClient) { }
 
