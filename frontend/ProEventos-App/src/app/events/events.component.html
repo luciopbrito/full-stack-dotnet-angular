@@ -31,8 +31,8 @@
       <th>Options</th>
     </tr>
   </thead>
-  <tbody *ngIf="events && events.length">
-    <tr *ngFor="let event of events">
+  <tbody *ngIf="eventsFilters && eventsFilters.length">
+    <tr *ngFor="let event of eventsFilters">
       <td>
         <img
         src="/assets/images/{{event.imagemURL}}"
@@ -49,10 +49,10 @@
       <td>{{ event.dataEvento }}</td>
       <td>{{ event.qtdPessoas }}</td>
       <td>{{ event.lote }}</td>
-      <td>{{ event.imagemUrl }}</td>
+      <td></td>
     </tr>
   </tbody>
-  <tfoot *ngIf="events.length == 0">
+  <tfoot *ngIf="eventsFilters.length == 0">
     <tr>
       <td colspan="8" class="text-center">
         <h4>Nenhum Evento encontrado</h4>
