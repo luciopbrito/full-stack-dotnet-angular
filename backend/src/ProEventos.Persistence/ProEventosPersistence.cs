@@ -69,7 +69,7 @@ namespace ProEventos.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Event> GetEventByIdAsync(int EventId, bool includeSpeakers = false)
+        public async Task<Event> GetEventByIdAsync(int eventId, bool includeSpeakers = false)
         {
             IQueryable<Event> query = _context.Events
                .Include(e => e.Batches)
@@ -81,24 +81,54 @@ namespace ProEventos.Persistence
             }
 
             query = query.OrderBy(e => e.Id)
-                .Where(e => e.Id == EventId);
+                .Where(e => e.Id == eventId);
 
             return await query.FirstOrDefaultAsync();
         }
 
-        public Task<Speaker[]> GetAllSpeakersAsync(string theme, bool includeEvents)
+        public async Task<Speaker[]> GetAllSpeakersAsync(bool includeEvents = false)
         {
-            throw new NotImplementedException();
+            IQueryable<Speaker> query = _context.Speakers
+               .Include(s => s.SocialMedias);
+
+            if (includeEvents)
+            {
+                query = query.Include(s => s.SpeakerEvents).ThenInclude(se => se.Event);
+            }
+
+            query = query.OrderBy(s => s.Id);
+
+            return await query.ToArrayAsync();
         }
 
-        public Task<Speaker[]> GetAllSpeakersByNameAsync(string Name, bool includeEvents)
+        public async Task<Speaker[]> GetAllSpeakersByNameAsync(string name, bool includeEvents)
         {
-            throw new NotImplementedException();
+            IQueryable<Speaker> query = _context.Speakers
+               .Include(s => s.SocialMedias);
+
+            if (includeEvents)
+            {
+                query = query.Include(s => s.SpeakerEvents).ThenInclude(se => se.Event);
+            }
+
+            query = query.OrderBy(s => s.Id).Where(s => s.Name.ToLower().Contains(name.ToLower()));
+
+            return await query.ToArrayAsync();
         }
 
-        public Task<Speaker> GetSpeakerByIdAsync(int SpeakerId, bool includeEvents)
+        public async Task<Speaker> GetSpeakerByIdAsync(int SpeakerId, bool includeEvents)
         {
-            throw new NotImplementedException();
+            IQueryable<Speaker> query = _context.Speakers
+               .Include(s => s.SocialMedias);
+
+            if (includeEvents)
+            {
+                query = query.Include(s => s.SpeakerEvents).ThenInclude(se => se.Event);
+            }
+
+            query = query.OrderBy(s => s.Id).Where(s => s.Id == SpeakerId);
+
+            return await query.FirstOrDefaultAsync();
         }
     }
 }
