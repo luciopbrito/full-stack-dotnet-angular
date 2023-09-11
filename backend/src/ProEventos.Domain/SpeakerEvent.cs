@@ -10,6 +10,6 @@ namespace ProEventos.Domain
         public int SpeakerId { get; set; }
         public Speaker Speaker { get; set; }
         public int EventId { get; set; }
-        public Event MyProp { get; set; }
+        public Event Event { get; set; }
     }
 }
