@@ -1,6 +1,5 @@
 using ProEventos.Application.Contracts;
 using ProEventos.Domain;
-using ProEventos.Persistence;
 using ProEventos.Persistence.Contracts;
 
 namespace ProEventos.Application
