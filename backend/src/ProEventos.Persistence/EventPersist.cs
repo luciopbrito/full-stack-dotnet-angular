@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProEventos.Domain;
+using ProEventos.Persistence.Context;
 using ProEventos.Persistence.Contracts;
 
 namespace ProEventos.Persistence
@@ -13,7 +14,7 @@ namespace ProEventos.Persistence
             _context = context;
         }
 
-        public async Task<Event[]> GetAllEventsAsync(string theme, bool includeSpeakers = false)
+        public async Task<Event[]> GetAllEventsAsync(bool includeSpeakers = false)
         {
             IQueryable<Event> query = _context.Events
                 .Include(e => e.Batches)
