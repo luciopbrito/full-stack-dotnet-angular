@@ -60,6 +60,8 @@ namespace ProEventos.Application
 
                 model.Id = even.Id;
 
+                _generalPersist.Update(model);
+
                 if (await _generalPersist.SaveChangesAsync())
                 {
                     return await _eventPersist.GetEventByIdAsync(model.Id);

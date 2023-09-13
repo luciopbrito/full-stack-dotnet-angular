@@ -92,10 +92,7 @@ namespace ProEventos.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("EventoId")
+                    b.Property<int?>("EventId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -179,9 +176,7 @@ namespace ProEventos.Persistence.Migrations
                 {
                     b.HasOne("ProEventos.Domain.Event", "Event")
                         .WithMany("SocialMedias")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EventId");
 
                     b.HasOne("ProEventos.Domain.Speaker", "Speaker")
                         .WithMany("SocialMedias")
@@ -194,7 +189,7 @@ namespace ProEventos.Persistence.Migrations
 
             modelBuilder.Entity("ProEventos.Domain.SpeakerEvent", b =>
                 {
-                    b.HasOne("ProEventos.Domain.Event", "MyProp")
+                    b.HasOne("ProEventos.Domain.Event", "Event")
                         .WithMany("SpeakerEvents")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -206,7 +201,7 @@ namespace ProEventos.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MyProp");
+                    b.Navigation("Event");
 
                     b.Navigation("Speaker");
                 });
