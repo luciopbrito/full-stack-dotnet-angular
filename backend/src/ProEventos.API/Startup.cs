@@ -24,10 +24,15 @@ namespace ProEventos.API
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
-            services.AddSingleton<IEventService, EventService>();
-            services.AddSingleton<IGeneralPersist, GeneralPersist>();
+            services.AddControllers()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
-            services.AddControllers();
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IEventPersist, EventPersist>();
+            services.AddScoped<IGeneralPersist, GeneralPersist>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

@@ -79,8 +79,7 @@ namespace ProEventos.Persistence.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     URL = table.Column<string>(type: "TEXT", nullable: false),
-                    EventoId = table.Column<int>(type: "INTEGER", nullable: true),
-                    EventId = table.Column<int>(type: "INTEGER", nullable: false),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: true),
                     SpeakerId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -90,8 +89,7 @@ namespace ProEventos.Persistence.Migrations
                         name: "FK_SocialMedias_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SocialMedias_Speakers_SpeakerId",
                         column: x => x.SpeakerId,

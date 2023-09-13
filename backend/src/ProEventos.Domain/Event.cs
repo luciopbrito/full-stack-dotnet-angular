@@ -10,8 +10,8 @@ namespace ProEventos.Domain
         public string ImageURL { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public IEnumerable<Batch> Batches { get; set; }
-        public IEnumerable<SocialMedia> SocialMedias { get; set; }
-        public IEnumerable<SpeakerEvent> SpeakerEvents { get; set; }
+        public IEnumerable<Batch>? Batches { get; set; }
+        public IEnumerable<SocialMedia>? SocialMedias { get; set; }
+        public IEnumerable<SpeakerEvent>? SpeakerEvents { get; set; }
     }
 }

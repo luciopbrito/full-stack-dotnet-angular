@@ -49,7 +49,7 @@ public class EventsController : ControllerBase
         }
     }
 
-    [HttpGet("{tema}/theme")]
+    [HttpGet("{theme}/theme")]
     public async Task<IActionResult> GetByTema(string theme)
     {
         try
@@ -83,7 +83,7 @@ public class EventsController : ControllerBase
         }
     }
 
-    [HttpPut]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Event model)
     {
         try
@@ -100,8 +100,8 @@ public class EventsController : ControllerBase
         }
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> Delete(int id, Event model)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
         try
         {
