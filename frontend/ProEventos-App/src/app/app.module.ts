@@ -10,11 +10,14 @@ import { SpeakersComponent } from './speakers/speakers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { EventsService } from './services/events.service';
 
 @NgModule({
   declarations: [AppComponent, EventsComponent, SpeakersComponent, NavComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, CollapseModule.forRoot(), FormsModule],
-  providers: [],
+  providers: [
+    EventsService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
