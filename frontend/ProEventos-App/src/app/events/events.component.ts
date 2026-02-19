@@ -16,7 +16,7 @@ export class EventsComponent implements OnInit {
   showImage: boolean = false;
   private _filter: string = '';
 
-  public get filter() {
+  public get filter(): string {
     return this._filter;
   }
 
@@ -38,7 +38,7 @@ export class EventsComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
-  public listFilter(filterBy: string): any {
+  public listFilter(filterBy: string): Event[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.events.filter(
       e => e.dateEvent.toString().toLowerCase().indexOf(filterBy) !== -1 ||
