@@ -18,4 +18,12 @@ export class EventsService {
   getAllEvents() {
     return this._httpClient.get<Event[]>(`${this._hostUrl}`);
   }
+
+  getEventByTheme(theme: string) {
+    return this._httpClient.get<Event[]>(`${this._hostUrl}/${theme}/theme`);
+  }
+
+  getEventById(id: number) {
+    return this._httpClient.get<Event>(`${this._hostUrl}/${id}`);
+  }
 }
