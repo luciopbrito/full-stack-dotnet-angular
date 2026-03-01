@@ -1,0 +1,32 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "watch ProEventos.API https",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/ProEventos.API/bin/Debug/net7.0/ProEventos.API.dll",
+      "cwd": "${workspaceFolder}/ProEventos.API",
+      "launchBrowser": {
+        "enabled": true,
+      },
+      "launchSettingsFilePath": "${workspaceFolder}/ProEventos.API/Properties/launchSettings.json",
+      "launchSettingsProfile": "https",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "Now listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      },
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+      }
+    },
+    // It's necessary define a build task in tasks.json, create a file .vscode/tasks.json and press ctrl+space and use the snippet 'dotnetBuild'
+  ]
+}

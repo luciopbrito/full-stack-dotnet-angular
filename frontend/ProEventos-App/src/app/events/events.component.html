@@ -34,7 +34,7 @@
     <tr *ngFor="let event of eventsFilters">
       <td>
         <img
-        src="/assets/images/{{event.imagemURL}}"
+        src="/assets/images/{{event.imageURL}}"
         alt=""
         [collapse]="showImage"
         [isAnimated]="true"
@@ -42,12 +42,12 @@
         [style.margin.px]="marginImg"
         >
       </td>
-      <td>{{ event.eventoId }}</td>
-      <td>{{ event.tema }}</td>
+      <td>{{ event.id }}</td>
+      <td>{{ event.theme }}</td>
       <td>{{ event.local }}</td>
-      <td>{{ event.dataEvento }}</td>
-      <td>{{ event.qtdPessoas }}</td>
-      <td>{{ event.lote }}</td>
+      <td>{{ event.dateEvent }}</td>
+      <td>{{ event.qtdPeople }}</td>
+      <td>{{ event.batches?.toString() }}</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm me-2">Editar</button>
         <button type="button" class="btn btn-danger btn-sm">Excluir</button>

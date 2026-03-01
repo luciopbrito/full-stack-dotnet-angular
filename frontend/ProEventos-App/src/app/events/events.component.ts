@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EventsService } from '../services/events.service';
+import { Event } from '../models/Event.interface';
 
 @Component({
   selector: 'app-events',
@@ -14,7 +16,7 @@ export class EventsComponent implements OnInit {
   showImage: boolean = false;
   private _filter: string = '';
 
-  public get filter() {
+  public get filter(): string {
     return this._filter;
   }
 
@@ -23,7 +25,10 @@ export class EventsComponent implements OnInit {
     this.eventsFilters = this.filter ? this.listFilter(this.filter) : this.events;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private _eventServices: EventsService
+  ) { }
 
   ngOnInit(): void {
     this.getEvents();
@@ -33,20 +38,20 @@ export class EventsComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
-  public listFilter(filterBy: string): any {
+  public listFilter(filterBy: string): Event[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.events.filter(
-      e => e.dataEvento.toString().toLowerCase().indexOf(filterBy) !== -1 ||
-      e.eventoId.toString().toLowerCase().indexOf(filterBy) !== -1 ||
-      e.imagemURL.toString().toLowerCase().indexOf(filterBy) !== -1 ||
+      e => e.dateEvent.toString().toLowerCase().indexOf(filterBy) !== -1 ||
+      e.id.toString().toLowerCase().indexOf(filterBy) !== -1 ||
+      e.imageURL.toString().toLowerCase().indexOf(filterBy) !== -1 ||
       e.local.toString().toLowerCase().indexOf(filterBy) !== -1 ||
-      e.qtdPessoas.toString().toLowerCase().indexOf(filterBy) !== -1 ||
-      e.tema.toString().toLowerCase().indexOf(filterBy) !== -1
+      e.qtdPeople.toString().toLowerCase().indexOf(filterBy) !== -1 ||
+      e.theme.toString().toLowerCase().indexOf(filterBy) !== -1
     )
   }
 
   public getEvents(): void {
-    this.http.get<Event[]>('http://localhost:5134/api/Eventos').subscribe(
+   this._eventServices.getAllEvents().subscribe(
       response => {
         this.events = response;
         this.eventsFilters = this.events;
@@ -54,14 +59,4 @@ export class EventsComponent implements OnInit {
       error => console.log(error)
     );
   }
-}
-
-type Event = {
-  eventoId: number,
-  local: string,
-  dataEvento: string,
-  tema: string,
-  qtdPessoas: number,
-  lote: string,
-  imagemURL: string
 }
